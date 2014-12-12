@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ARMULATOR</title>
+    <style type="text/css">
+    #apDiv1 {
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:1306px;
+	height:140px;
+	z-index:1;
+    }
+    #apDiv2 {
+	position:absolute;
+	left:4px;
+	top:137px;
+	width:285px;
+	height:469px;
+	z-index:2;
+    }
+    #apDiv3 {
+	position:absolute;
+	left:295px;
+	top:141px;
+	width:512px;
+	height:552px;
+	z-index:3;
+    }
+    #apDiv4 {
+	position:absolute;
+	left:838px;
+	top:140px;
+	width:460px;
+	height:420px;
+	z-index:4;
+    }
+    #apDiv5 {
+	position:absolute;
+	left:2px;
+	top:738px;
+	width:1248px;
+	height:74px;
+	z-index:5;
+    }
+    </style>
+<link rel="stylesheet" type="text/css" href="style.css" />
+	<script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+<div id="apDiv1">
+		<table>
+        	<td width="60"></td>
+        	<td><img src="images/Header2.jpg" width="1180" height="100" alt="ARMULATOR©" longdesc="http://www.armulator.org"/></td>
+        </table>
+    </div>
+    <div id="apDiv2">
+        <form id="form1" name="form1" method="post" action="">
+            <table>
+                <tr>
+                    <td>R00 : </td>
+                    <td><label for="R00"></label>
+                        <input type="text" name="R00" id="R00" />
+                    <label for="R3"></label></td>
+                    <td>
+                        <input name="R00_Set" type="button" class="extrbtn" id="Set_R0" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R01 : </td>
+                    <td><input type="text" name="R01" id="R01" />
+                        <label for="R01"></label>
+                    </td>
+                    <td>
+                        <input name="R01_Set" type="button" class="extrbtn" id="Set_R1" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R02 : </td>
+                    <td><input type="text" name="R02" id="R02" />
+                        <label for="R02"></label>
+                    </td>
+                    <td>
+                        <input name="R02_Set" type="button" class="extrbtn" id="Set_R2" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R03 : </td>
+                    <td><input type="text" name="R03" id="R03" />
+                        <label for="R03"></label>
+                    </td>
+                    <td>
+                        <input name="R03_Set" type="button" class="extrbtn" id="Set_R3" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R04 : </td>
+                    <td><input type="text" name="R04" id="R04" />
+                        <label for="R04"></label>
+                    </td>
+                    <td>
+                        <input name="R04_Set" type="button" class="extrbtn" id="Set_R4" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R05 : </td>
+                    <td><input type="text" name="R05" id="R05" />
+                        <label for="R05"></label>
+                    </td>
+                    <td>
+                        <input name="R05_Set" type="button" class="extrbtn" id="Set_R5" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R06 : </td>
+                    <td><input type="text" name="R06" id="R06" />
+                        <label for="R06"></label>
+                    </td>
+                    <td>
+                        <input name="R06_Set" type="button" class="extrbtn" id="Set_R6" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R07 : </td>
+                    <td><input type="text" name="R07" id="R07" />
+                        <label for="R07"></label>
+                    </td>
+                    <td>
+                        <input name="R07_Set" type="button" class="extrbtn" id="Set_R7" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R08 : </td>
+                    <td><input type="text" name="R08" id="R08" />
+                        <label for="R08"></label>
+                    </td>
+                    <td>
+                        <input name="R08_Set" type="button" class="extrbtn" id="Set_R8" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R09 : </td>
+                    <td><input type="text" name="R09" id="R09" />
+                        <label for="R09"></label>
+                    </td>
+                    <td>
+                        <input name="R09_Set" type="button" class="extrbtn" id="Set_R9" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R10 : </td>
+                    <td><input type="text" name="R10" id="R10" />
+                        <label for="R10"></label>
+                    </td>
+                    <td>
+                        <input name="R10_Set" type="button" class="extrbtn" id="Set_R10" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R11 : </td>
+                    <td><input type="text" name="R11" id="R11" />
+                        <label for="R11"></label>
+                    </td>
+                    <td>
+                        <input name="R11_Set" type="button" class="extrbtn" id="Set_R11" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>R12 : </td>
+                    <td><input type="text" name="R12" id="R12" />
+                        <label for="R12"></label>
+                    </td>
+                    <td>
+                        <input name="R12_Set" type="button" class="extrbtn" id="Set_R12" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>SP  : </td>
+                    <td><input type="text" name="R13" id="R13" />
+                        <label for="R13"></label>
+                    </td>
+                    <td>
+                        <input name="R13_Set" type="button" class="extrbtn" id="Set_R13" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>LR  : </td>
+                    <td><input type="text" name="R14" id="R14" />
+                        <label for="R14"></label>
+                    </td>
+                    <td>
+                        <input name="R14_Set" type="button" class="extrbtn" id="Set_R14" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>PC  : </td>
+                    <td><input type="text" name="R15" id="R15" />
+                    </td>
+                    <td>
+                        <input name="R15_Set" type="button" class="extrbtn" id="Set_R15" style="width:75px; height:25px;" value="Set"> 
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="apDiv3">
+    <div type="text" id="editor" style="width: 512px;height: 485px;border: 1px solid rgba(136,164,155, 0.7)"></div><br><br>
+    <script src="src/ace.js" type="text/JavaScript" charset="utf-8"></script>
+    <script src="src/theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+    <script src="src/mode-assembly_x86.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/tomorrow_night");
+        var assembly_x86Mode = require("ace/mode/assembly_x86").Mode;
+        editor.getSession().setMode(new assembly_x86Mode());
+    </script>
+    <table>
+        <td width="83"><input type="button" value="Clear" id="clear" class="extrbtn" style="width:75px; height:25px;"></td>
+        <td width="170" style="width:300"></td>
+        <td><input type="button" value="Step" id="Step" class="extrbtn" style="width:75px; height:25px;" onclick="reg()"></td>
+        <td width="170" style="width:300"></td>
+        <td width="75"><input type="button" value="Compile" id="compile" class="extrbtn" style="width:75px; height:25px;"></td>
+    </table>
+</div>
+    <div id="apDiv4">
+      <form>
+            <textarea id="output" name="output" style="width:460px;height:275px;border: 1px solid rgba(136,164,155, 0.7); background-color:black; color:white;" disabled="disabled">output</textarea>
+        <table>
+              <tr>
+                <td><p>Type your command line inputs here:<br />
+                  <textarea id="input" name="input" style="width:460px;height:163px;border: 1px solid rgba(136,164,155, 0.7); background-color:black; color:white;"">
+                    </textarea>
+                </p></td>
+              </tr>
+        </table>
+      </form>
+    </div>
+    <div id="apDiv5">
+      <table>
+       	  <td width="290"></td>
+            <td>Upload your source code here</td>
+        </table>
+        <table>
+            <td>
+                <form>
+                    <table >
+                    	<td width="290"></td>
+                        <td class="extrbtn"><input type="file" id="file"></td>
+                        <td><input type="button" class="extrbtn"  value="Upload" id="upload"></td>
+                    </table>
+                </form>
+            </td>
+        </table>
+    </div>
+</body>
+</html>

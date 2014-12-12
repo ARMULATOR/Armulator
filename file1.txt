@@ -1,0 +1,15 @@
+    820c:	e24dd004 	sub	sp, sp, #4	; 0x4	
+    8210:	e58de000 	str	lr, [sp]	
+    8214:	e3a04064 	mov	r4, #100	; 0x64	
+    8218:	e3a050c8 	mov	r5, #200	; 0xc8	
+    821c:	e1540005 	cmp	r4, r5	
+    8220:	1a000001 	bne	822c <else>	
+    8224:	e59f0014 	ldr	r0, [pc, #20]	; 8240 <.text+0x220>	
+    8228:	ea000000 	b	8230 <finish>	
+    822c:	e59f0010 	ldr	r0, [pc, #16]	; 8244 <.text+0x224>	
+    8230:	eb00006b 	bl	83e4 <printf>	
+    8234:	e59de000 	ldr	lr, [sp]	
+    8238:	e28dd004 	add	sp, sp, #4	; 0x4	
+    823c:	e1a0f00e 	mov	pc, lr	
+    8240:	00010bd0 	ldreqd	r0, [r1], -r0	
+    8244:	00010be6 	andeq	r0, r1, r6, ror #23	
