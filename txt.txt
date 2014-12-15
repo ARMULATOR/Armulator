@@ -140,9 +140,9 @@ Disassembly of section .text:
     820c:	e24dd004 	sub	sp, sp, #4	; 0x4
     8210:	e58de000 	str	lr, [sp]
     8214:	e3a04064 	mov	r4, #100	; 0x64
-    8218:	e3a050c8 	mov	r5, #200	; 0xc8
+    8218:	e3a05064 	mov	r5, #100	; 0x64
     821c:	e1540005 	cmp	r4, r5
-    8220:	1a000001 	bne	822c <else>
+    8220:	0a000001 	beq	822c <else>
     8224:	e59f0014 	ldr	r0, [pc, #20]	; 8240 <.text+0x220>
     8228:	ea000000 	b	8230 <finish>
 
