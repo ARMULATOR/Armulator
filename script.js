@@ -17,14 +17,13 @@ $( document ).ready(
                         function(data)
                         {
                             $('#output').val(data.split(" \n\n")[0]);
-                            alert(data.split(" \n\n")[0])
                             bin = data.split(" \n\n")[1];
                             bin1 = data.split(" \n\n")[2];
                             
                         }
                     );
                 }   
-        });
+        }); 
 
         
         
@@ -62,11 +61,42 @@ for (var i = 0, registers = new Array(16); i < 16; i++) {
 		
 var count = 0;
 var count1 = 0;    
-var num = 0;		
+var num = 0;
+
+function getCode(){
+
+      var code = editor.getSession().getValue();
+            var input = $('#input').val();
+            
+            if(code){
+                    $.post("ajax.php" , 
+                        {
+                            text_file: code,
+                            input_text : input,
+                        },
+                        function(data)
+                        {
+                            lastOut = data.split(" \n\n")[0];
+                            bin = data.split(" \n\n")[1];
+                            bin1 = data.split(" \n\n")[2];
+                            
+                        }
+                    );
+                }
+
+}            
 		
 function reg(){
+    if(count == 0){
+        getCode();
+    }
+   
 	var ar = bin.split(" ");
 	var ar1 = bin1.split("\n");
+    
+     if(ar[count] == "11100001101000001111000000001110"){
+         $('#output').val(lastOut);
+    } 
             
 	var cond = parseInt((ar[count].substring(0,4)),2);
 			
