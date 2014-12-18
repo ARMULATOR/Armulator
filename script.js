@@ -120,7 +120,7 @@ for (var i = 0, registers = new Array(16); i < 16; i++) {
 var count = 0;
 var count1 = 0;    
 var num = 0;
-
+var addN = 0;
 function getCode(){
 
         var lines = document.getElementsByClassName("ace_line");
@@ -232,7 +232,6 @@ function reg(){
                 }
             }	
 		}
-        
         if(signIm == 107){
             $('#output').val(lastOut);
         } 
@@ -441,5 +440,12 @@ function reg(){
     
     
     count1 = count;
+    if(format==0 || format ==1 ){
     count++;
+    }else{
+        if(addN != 0){
+            count++;
+        }
+        addN++;
+    }
 } 
