@@ -5,6 +5,11 @@ $( document ).ready(
     // this is the function for submit the values >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
         $('#compile').click( function(){
         
+            
+            var lines = document.getElementsByClassName("ace_line");
+            var gutters = document.getElementsByClassName("ace_gutter-cell");
+            var gutLineNo = parseInt(gutters[0].innerHTML)-1; 
+            
             var code = editor.getSession().getValue();
             var input = $('#input').val();
             
@@ -16,10 +21,23 @@ $( document ).ready(
                         },
                         function(data)
                         {
+                            var error = data.split("\n");
+                            if(error[0] == "text.s: Assembler messages:"){
+                                for(var i = 1;i<error.length;i++){
+                                    var getErrNum = error[i].split(":");
+                                    var errLine = parseInt(getErrNum[1])-1;
+                                    var linetxt = editor.session.getLine(errLine);
+                                    //lines[errLine-gutterLineNo].innerHTML = linetxt + "\t" + getErrNum;
+                                    lines[errLine-gutLineNo].innerHTML += "\t" + getErrNum[3];
+                                    lines[errLine-gutLineNo].style.backgroundColor = "red";
+                                    
+                                     $('#output').val(data);
+                                    
+                                }
+                            }else{
                             $('#output').val(data.split(" \n\n")[0]);
-                            bin = data.split(" \n\n")[1];
-                            bin1 = data.split(" \n\n")[2];
                             
+                            }
                         }
                     );
                 }   
@@ -47,6 +65,46 @@ $( document ).ready(
     }
 );
 
+    function getId(id){
+        intNum = parseInt(id);
+        if(intNum == 0){
+            var setReg = document.getElementById("R00").value;
+               
+        }else if(intNum == 1){
+            var setReg = document.getElementById("R01").value;
+        }else if(intNum == 2){
+            var setReg = document.getElementById("R02").value;
+        }else if(intNum == 3){
+             var setReg = document.getElementById("R03").value;
+        }else if(intNum == 4){
+             var setReg = document.getElementById("R04").value;
+        }else if(intNum == 5){
+             var setReg = document.getElementById("R05").value;
+        }else if(intNum == 6){
+             var setReg = document.getElementById("R06").value;
+        }else if(intNum == 7){
+             var setReg = document.getElementById("R07").value;
+        }else if(intNum == 8){
+             var setReg = document.getElementById("R08").value;
+        }else if(intNum == 9){
+             var setReg = document.getElementById("R09").value;
+        }else if(intNum == 10){
+             var setReg = document.getElementById("R10").value;
+        }else if(intNum == 11){
+             var setReg = document.getElementById("R11").value;
+        }else if(intNum == 12){
+             var setReg = document.getElementById("R12").value;
+        }else if(intNum == 13){
+             var setReg = document.getElementById("R13").value;
+        }else if(intNum == 14){
+             var setReg = document.getElementById("R14").value;
+        }else{
+             var setReg = document.getElementById("R15").value;
+        }
+        
+        setValue(intNum,setReg);
+    }
+       
     function getValue(regNum){
         return registers[regNum];
     }
@@ -65,6 +123,10 @@ var num = 0;
 
 function getCode(){
 
+        var lines = document.getElementsByClassName("ace_line");
+        var gutters = document.getElementsByClassName("ace_gutter-cell");
+        var gutLineNo = parseInt(gutters[0].innerHTML)-1; 
+
       var code = editor.getSession().getValue();
             var input = $('#input').val();
             
@@ -76,10 +138,24 @@ function getCode(){
                         },
                         function(data)
                         {
+                        
+                             var error = data.split("\n");
+                            if(error[0] == "text.s: Assembler messages:"){
+                                for(var i = 1;i<error.length;i++){
+                                    var getErrNum = error[i].split(":");
+                                    var errLine = parseInt(getErrNum[1])-1;
+                                    var linetxt = editor.session.getLine(errLine);
+                                    lines[errLine-gutLineNo].innerHTML += "\t" + getErrNum[3];
+                                    lines[errLine-gutLineNo].style.backgroundColor = "red";
+                                    
+                                     $('#output').val(data);
+                                    
+                                }
+                            }else{
                             lastOut = data.split(" \n\n")[0];
                             bin = data.split(" \n\n")[1];
                             bin1 = data.split(" \n\n")[2];
-                            
+                            }
                         }
                     );
                 }
@@ -94,9 +170,6 @@ function reg(){
 	var ar = bin.split(" ");
 	var ar1 = bin1.split("\n");
     
-     if(ar[count] == "11100001101000001111000000001110"){
-         $('#output').val(lastOut);
-    } 
             
 	var cond = parseInt((ar[count].substring(0,4)),2);
 			
@@ -104,20 +177,26 @@ function reg(){
 		case 14	:
 			var format = parseInt((ar[count].substring(4,6)),2);
 				
-			if(format == 1){
+			if(format == 1){    //ldr and str instruction
 				var opcode = parseInt((ar[count].substring(6,12)),2);
 					var rn = parseInt((ar[count].substring(12,16)),2);
 					var rd = parseInt((ar[count].substring(16,20)),2);
-					var operand = parseInt((ar[count].substring(20,32)),2); 
-            }else if(format == 0){
+					var operand = parseInt((ar[count].substring(20,32)),2);
+                    var signIm = "0";        
+                    
+            }else if(format == 0){  //mov,add,sub.....
                 var im = parseInt((ar[count].substring(6,7)),2);
                 var opcode = parseInt((ar[count].substring(7,11)),2);
                 var set = parseInt((ar[count].substring(11,12)),2);
                 var rn = parseInt((ar[count].substring(12,16)),2);
                 var rd = parseInt((ar[count].substring(16,20)),2);
                 var operand = parseInt((ar[count].substring(20,32)),2); 
-            } else {
+                var signIm = "0";
+                
+            } else {    //branch and bl instruction
+            
                 var opcodebr = parseInt((ar[count].substring(6,8)),2);
+                var signIm = parseInt((ar[count].substring(8,32)),2);
                 switch(opcodebr){
                     case 2 :	//Branch instruction
                         word = ar1[count].split("\t");
@@ -134,10 +213,29 @@ function reg(){
                             }
                         } 
                     break;
+                    
+                    case 3 :    //Branch and Link instruction
+                        word = ar1[count].split("\t");
+                        num = word[3].split(" ")[0];
+                        num1 = num + ":";
+        
+                        for(var i = 0;i<ar1.length;i++){
+                            n = ar1[i].indexOf(num1);
+                            if(n == -1){
+                                continue;
+                            } else {
+                                count = i;
+                                break;
+                            }
+                        } 
+                    break;    
                 }
             }	
 		}
-		
+        
+        if(signIm == 107){
+            $('#output').val(lastOut);
+        } 
 		
 		switch(opcode){
             case 4 :	//Add instruction
@@ -185,10 +283,13 @@ function reg(){
 		break;
 
 		case 10	:	//Cmp instruction
-        { //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<???????????????????????????????
-			var val1 = getValue(rn);
+        
+            var val1 = getValue(rn);
+            if(im == 1){
+            var val2 = operand;    
+            }else{
 			var val2 = getValue(operand);
-            
+            }
 			count++;
 			
             var word = ar1[count].split("\t");
@@ -232,9 +333,26 @@ function reg(){
                         count++;
                     }
                 break;
+                
+                case 12:        //bgt instruction
+                    if(val1 > val2){
+                        var num1 = num + ":";
+                        
+                        for(var i= 0;i<ar1.length;i++){
+                                n = ar1[i].indexOf(num1);
+                                if(n == -1){
+                                    continue;
+                                }else{
+                                    count = i;
+                                    break;
+                                }
+                        }
+                    }else{
+                        count++;
+                    }
             }
         break;
-		}
+		
 		
         }
         
@@ -254,7 +372,6 @@ function reg(){
             }
             else return 1;
             }
-        //}
             
         function checkLastChar (number) {
             var words = lines[number].trim().split(" ");
@@ -305,7 +422,6 @@ function reg(){
             aceLines[arNum[count]-gutLineNo].style.backgroundColor = "green";
         }   
        
-    
     document.getElementById('R00').value = registers[0];
     document.getElementById('R01').value = registers[1];
     document.getElementById('R02').value = registers[2];
@@ -322,6 +438,7 @@ function reg(){
     document.getElementById('R13').value = registers[13];
     document.getElementById('R14').value = registers[14];
     document.getElementById('R15').value = registers[15];
+    
     
     count1 = count;
     count++;

@@ -50,7 +50,7 @@ var AssemblyX86HighlightRules = function() {
               'support.function.directive.assembly',
               'text',
               'entity.name.function.assembly' ],
-           regex: '(\\s*)(%define|%xdefine|%idefine|%undef|.text|.data|.asciz|.global main|%assign|%defstr|%strcat|%strlen|%substr|%00|%0|%rotate|%rep|%endrep|%include|\\$\\$|\\$|%unmacro|%if|%elif|%else|%endif|%(?:el)?ifdef|%(?:el)?ifmacro|%(?:el)?ifctx|%(?:el)?ifidn|%(?:el)?ifidni|%(?:el)?ifid|%(?:el)?ifnum|%(?:el)?ifstr|%(?:el)?iftoken|%(?:el)?ifempty|%(?:el)?ifenv|%pathsearch|%depend|%use|%push|%pop|%repl|%arg|%stacksize|%local|%error|%warning|%fatal|%line|%!|%comment|%endcomment)\\b( ?)((?:[_a-zA-Z][_a-zA-Z0-9]*)?)',
+           regex: '(\\s*)(.text|.data|.asciz|.global main)\\b( ?)((?:[_a-zA-Z][_a-zA-Z0-9]*)?)',
            caseInsensitive: true },
           { token: 'support.function.directive.assembly',
            regex: '\\b(?:d[bwdqtoy]|res[bwdqto]|equ|times|align|alignb|sectalign|section|ptr|byte|word|dword|qword|incbin)\\b',

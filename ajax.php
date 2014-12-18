@@ -37,7 +37,8 @@ fclose($pipes[1]);
 
 
  //$out1=shell_exec('javac Main.java');
- $out2=shell_exec('java Main');
+ $out1=shell_exec('java Main');
+ $out2=shell_exec('java Main1');
 
 $stderr = stream_get_contents($pipes[2]);
 fclose($pipes[2]);
