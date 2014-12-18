@@ -65,7 +65,7 @@ $( document ).ready(
     }
 );
 
-    function getId(id){
+    function getId(id){		//Getting registers from their ID
         intNum = parseInt(id);
         if(intNum == 0){
             var setReg = document.getElementById("R00").value;
@@ -162,7 +162,7 @@ function getCode(){
 
 }            
 		
-function reg(){
+function reg(){		//This function runs when the "Next Step" button is clicked
     if(count == 0){
         getCode();
     }
@@ -171,20 +171,21 @@ function reg(){
 	var ar1 = bin1.split("\n");
     
             
-	var cond = parseInt((ar[count].substring(0,4)),2);
-			
-	switch(cond){
+	var cond = parseInt((ar[count].substring(0,4)),2); // Cond field
+	
+	/*Now let's check the fields*/
+	switch(cond){		
 		case 14	:
 			var format = parseInt((ar[count].substring(4,6)),2);
 				
-			if(format == 1){    //ldr and str instruction
+			if(format == 1){    //Data transfer instructions
 				var opcode = parseInt((ar[count].substring(6,12)),2);
 					var rn = parseInt((ar[count].substring(12,16)),2);
 					var rd = parseInt((ar[count].substring(16,20)),2);
 					var operand = parseInt((ar[count].substring(20,32)),2);
                     var signIm = "0";        
                     
-            }else if(format == 0){  //mov,add,sub.....
+            }else if(format == 0){  //Data processing instructions
                 var im = parseInt((ar[count].substring(6,7)),2);
                 var opcode = parseInt((ar[count].substring(7,11)),2);
                 var set = parseInt((ar[count].substring(11,12)),2);
@@ -193,12 +194,12 @@ function reg(){
                 var operand = parseInt((ar[count].substring(20,32)),2); 
                 var signIm = "0";
                 
-            } else {    //branch and bl instruction
+            } else {    //Branch Instructions
             
                 var opcodebr = parseInt((ar[count].substring(6,8)),2);
                 var signIm = parseInt((ar[count].substring(8,32)),2);
                 switch(opcodebr){
-                    case 2 :	//Branch instruction
+                    case 2 :	//B instruction
                         word = ar1[count].split("\t");
                         num = word[3].split(" ")[0];
                         num1 = num + ":";
@@ -214,7 +215,7 @@ function reg(){
                         } 
                     break;
                     
-                    case 3 :    //Branch and Link instruction
+                    case 3 :    //BL instruction
                         word = ar1[count].split("\t");
                         num = word[3].split(" ")[0];
                         num1 = num + ":";
@@ -358,7 +359,7 @@ function reg(){
     var numOfLines = editor.session.getLength();
     var aceLines = document.getElementsByClassName("ace_line");
  
-        for(var i = 0, lines = new Array(numOfLines); i<numOfLines; i++ ){
+        for(var i = 0, lines = new Array(numOfLines); i < numOfLines; i++ ){
             lines[i] = editor.session.getLine(i);
         }
         
